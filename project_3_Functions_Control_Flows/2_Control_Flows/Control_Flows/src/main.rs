@@ -1,50 +1,44 @@
-use std::io;
-
-struct GameState {
-    player_position: (i32, i32),
-    box_position: (i32, i32),
-    target_position: (i32, i32),
-}
-
-impl GameState {
-    fn new() -> Self {
-        GameState {
-            player_position: (0, 0),
-            box_position: (1, 1),
-            target_position: (2, 2),
-        }
-    }
-
-    fn update(&mut self, direction: &str) {
-        match direction {
-            "up" => self.player_position.1 -= 1,
-            "down" => self.player_position.1 += 1,
-            "left" => self.player_position.0 -= 1,
-            "right" => self.player_position.0 += 1,
-            _ => (),
-        }
-    }
-}
 
 fn main() {
-    let mut game_state = GameState::new();
+    // if 条件语句示例
+    let number = 5;
+
+    if number % 2 == 0 {
+        println!("The number is even.");
+    } else {
+        println!("The number is odd.");
+    }
+
+    // for 循环示例
+    for i in 1..5 {
+        println!("i: {}", i);
+    }
+
+    // while 循环示例
+    let mut number = 3;
+    while number!= 0 {
+        println!("number: {}", number);
+        number -= 1;
+    }
+
+    // loop 循环示例
+    let mut count = 0;
     loop {
-        println!("Player Position: {:?}", game_state.player_position);
-        println!("Enter direction (up, down, left, right) or 'q' to quit:");
-
-        let mut direction = String::new();
-        io::stdin().read_line(&mut direction).expect("Failed to read line");
-        let direction = direction.trim();
-
-        if direction == "q" {
+        count += 1;
+        if count == 5 {
             break;
         }
+    }
+    println!("Count reached: {}", count);
 
-        game_state.update(direction);
+    // match 模式匹配示例
+    let number = 5;
 
-        if game_state.player_position == game_state.box_position {
-            println!("You pushed the box!");
-        }
+    match number {
+        1 => println!("One"),
+        2 | 3 | 5 => println!("Prime"),
+        4..=10 => println!("Between 4 and 10"),
+        _ => println!("Something else"),
     }
 }
 
