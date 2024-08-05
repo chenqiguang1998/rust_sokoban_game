@@ -1,0 +1,7 @@
+[package]
+name = "Improving_Input_and_Drawing_Features"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ggez = "0.8.1"

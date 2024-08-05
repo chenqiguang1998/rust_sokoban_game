@@ -1,0 +1,362 @@
+   Compiling Improving_Input_and_Drawing_Features v0.1.0 (/home/chen/emp_work/rust_sokoban_game/project_10_Improving_Input_and_Drawing_Features/Improving_Input_and_Drawing_Features)
+error[E0425]: cannot find function `clear` in module `graphics`
+   --> src/main.rs:114:19
+    |
+114 |         graphics::clear(ctx, Color::WHITE);
+    |                   ^^^^^ not found in `graphics`
+
+error[E0425]: cannot find function `present` in module `graphics`
+   --> src/main.rs:152:19
+    |
+152 |         graphics::present(ctx)?;
+    |                   ^^^^^^^ not found in `graphics`
+
+error[E0603]: enum `KeyCode` is private
+  --> src/main.rs:2:25
+   |
+2  | use ggez::event::{self, KeyCode, KeyMods, EventHandler};
+   |                         ^^^^^^^ private enum
+   |
+note: the enum `KeyCode` is defined here
+  --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/event.rs:34:30
+   |
+34 | use crate::input::keyboard::{KeyCode, KeyInput, KeyMods};
+   |                              ^^^^^^^
+help: import `KeyCode` directly
+   |
+2  | use ggez::event::{self, winit::event::VirtualKeyCode, KeyMods, EventHandler};
+   |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0603]: struct `KeyMods` is private
+  --> src/main.rs:2:34
+   |
+2  | use ggez::event::{self, KeyCode, KeyMods, EventHandler};
+   |                                  ^^^^^^^ private struct
+   |
+note: the struct `KeyMods` is defined here
+  --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/event.rs:34:49
+   |
+34 | use crate::input::keyboard::{KeyCode, KeyInput, KeyMods};
+   |                                                 ^^^^^^^
+help: import `KeyMods` directly
+   |
+2  | use ggez::event::{self, KeyCode, ggez::input::keyboard::KeyMods, EventHandler};
+   |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+warning: unused import: `self`
+ --> src/main.rs:2:19
+  |
+2 | use ggez::event::{self, KeyCode, KeyMods, EventHandler};
+  |                   ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `ggez::input::keyboard::KeyCode as GgezKeyCode`
+ --> src/main.rs:4:5
+  |
+4 | use ggez::input::keyboard::KeyCode as GgezKeyCode;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:133:19
+    |
+133 |         graphics::draw(ctx, &player_mesh, graphics::DrawParam::default())?;
+    |                   ^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:134:19
+    |
+134 |         graphics::draw(ctx, &box_mesh, graphics::DrawParam::default())?;
+    |                   ^^^^
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:135:19
+    |
+135 |         graphics::draw(ctx, &target_mesh, graphics::DrawParam::default())?;
+    |                   ^^^^
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:138:23
+    |
+138 |             graphics::draw(ctx, &mesh, graphics::DrawParam::default())?;
+    |                       ^^^^
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:149:19
+    |
+149 |         graphics::draw(ctx, &step_display, (ggez::mint::Point2 { x: 10.0, y: 10.0 }, Color::BLACK))?;
+    |                   ^^^^
+
+warning: use of deprecated function `ggez::graphics::draw`: Use `drawable.draw` or `canvas.draw` instead.
+   --> src/main.rs:150:19
+    |
+150 |         graphics::draw(ctx, &time_display, (ggez::mint::Point2 { x: 10.0, y: 30.0 }, Color::BLACK))?;
+    |                   ^^^^
+
+error[E0050]: method `key_down_event` has 5 parameters but the declaration in trait `key_down_event` has 4
+   --> src/main.rs:169:23
+    |
+169 |     fn key_down_event(&mut self, _ctx: &mut Context, keycode: KeyCode, _keymod: KeyMods, _repeat: bool) {
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 4 parameters, found 5
+    |
+    = note: `key_down_event` from trait: `fn(&mut Self, &mut ggez::Context, KeyInput, bool) -> Result<(), E>`
+
+error[E0425]: cannot find function `play_sound` in this scope
+  --> src/main.rs:78:17
+   |
+78 |                 play_sound(sound).ok();
+   |                 ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `play_sound` in this scope
+  --> src/main.rs:95:17
+   |
+95 |                 play_sound(sound).ok();
+   |                 ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `play_sound` in this scope
+   --> src/main.rs:102:17
+    |
+102 |                 play_sound(sound).ok();
+    |                 ^^^^^^^^^^ not found in this scope
+
+error[E0308]: mismatched types
+   --> src/main.rs:133:24
+    |
+133 |         graphics::draw(ctx, &player_mesh, graphics::DrawParam::default())?;
+    |         -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:133:9
+    |
+133 |         graphics::draw(ctx, &player_mesh, graphics::DrawParam::default())?;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0308]: mismatched types
+   --> src/main.rs:134:24
+    |
+134 |         graphics::draw(ctx, &box_mesh, graphics::DrawParam::default())?;
+    |         -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:134:9
+    |
+134 |         graphics::draw(ctx, &box_mesh, graphics::DrawParam::default())?;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0308]: mismatched types
+   --> src/main.rs:135:24
+    |
+135 |         graphics::draw(ctx, &target_mesh, graphics::DrawParam::default())?;
+    |         -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:135:9
+    |
+135 |         graphics::draw(ctx, &target_mesh, graphics::DrawParam::default())?;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0308]: mismatched types
+   --> src/main.rs:138:28
+    |
+138 |             graphics::draw(ctx, &mesh, graphics::DrawParam::default())?;
+    |             -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |             |
+    |             arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:138:13
+    |
+138 |             graphics::draw(ctx, &mesh, graphics::DrawParam::default())?;
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0277]: the trait bound `Point2<f32>: From<(Point2<{float}>, Color)>` is not satisfied
+   --> src/main.rs:149:44
+    |
+149 |         graphics::draw(ctx, &step_display, (ggez::mint::Point2 { x: 10.0, y: 10.0 }, Color::BLACK))?;
+    |         --------------                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `From<(Point2<{float}>, Color)>` is not implemented for `Point2<f32>`, which is required by `(Point2<{float}>, Color): Into<DrawParam>`
+    |         |
+    |         required by a bound introduced by this call
+    |
+    = help: the trait `From<Vec2>` is implemented for `Point2<f32>`
+    = help: for that trait implementation, expected `Vec2`, found `(Point2<{float}>, Color)`
+    = note: required for `(Point2<{float}>, Color)` to implement `Into<Point2<f32>>`
+    = note: required for `DrawParam` to implement `From<(Point2<{float}>, Color)>`
+    = note: 1 redundant requirement hidden
+    = note: required for `(Point2<{float}>, Color)` to implement `Into<DrawParam>`
+note: required by a bound in `ggez::graphics::draw`
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:72
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |                                                                        ^^^^^^^^^^^^^^^ required by this bound in `draw`
+
+error[E0308]: mismatched types
+   --> src/main.rs:149:24
+    |
+149 |         graphics::draw(ctx, &step_display, (ggez::mint::Point2 { x: 10.0, y: 10.0 }, Color::BLACK))?;
+    |         -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:149:9
+    |
+149 |         graphics::draw(ctx, &step_display, (ggez::mint::Point2 { x: 10.0, y: 10.0 }, Color::BLACK))?;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0277]: the trait bound `Point2<f32>: From<(Point2<{float}>, Color)>` is not satisfied
+   --> src/main.rs:150:44
+    |
+150 |         graphics::draw(ctx, &time_display, (ggez::mint::Point2 { x: 10.0, y: 30.0 }, Color::BLACK))?;
+    |         --------------                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `From<(Point2<{float}>, Color)>` is not implemented for `Point2<f32>`, which is required by `(Point2<{float}>, Color): Into<DrawParam>`
+    |         |
+    |         required by a bound introduced by this call
+    |
+    = help: the trait `From<Vec2>` is implemented for `Point2<f32>`
+    = help: for that trait implementation, expected `Vec2`, found `(Point2<{float}>, Color)`
+    = note: required for `(Point2<{float}>, Color)` to implement `Into<Point2<f32>>`
+    = note: required for `DrawParam` to implement `From<(Point2<{float}>, Color)>`
+    = note: 1 redundant requirement hidden
+    = note: required for `(Point2<{float}>, Color)` to implement `Into<DrawParam>`
+note: required by a bound in `ggez::graphics::draw`
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:72
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |                                                                        ^^^^^^^^^^^^^^^ required by this bound in `draw`
+
+error[E0308]: mismatched types
+   --> src/main.rs:150:24
+    |
+150 |         graphics::draw(ctx, &time_display, (ggez::mint::Point2 { x: 10.0, y: 30.0 }, Color::BLACK))?;
+    |         -------------- ^^^ expected `&mut Canvas`, found `&mut Context`
+    |         |
+    |         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut Canvas`
+               found mutable reference `&mut ggez::Context`
+note: function defined here
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/graphics/mod.rs:86:8
+    |
+86  | pub fn draw(canvas: &mut Canvas, drawable: &impl Drawable, param: impl Into<DrawParam>) {
+    |        ^^^^
+
+error[E0277]: the `?` operator can only be applied to values that implement `Try`
+   --> src/main.rs:150:9
+    |
+150 |         graphics::draw(ctx, &time_display, (ggez::mint::Point2 { x: 10.0, y: 30.0 }, Color::BLACK))?;
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the `?` operator cannot be applied to type `()`
+    |
+    = help: the trait `Try` is not implemented for `()`
+
+error[E0599]: no method named `keyboard_input` found for mutable reference `&mut ggez::Context` in the current scope
+   --> src/main.rs:159:36
+    |
+159 |         if let Some(keycode) = ctx.keyboard_input().keycode {
+    |                                    ^^^^^^^^^^^^^^ method not found in `&mut Context`
+
+error[E0425]: cannot find function `play_sound` in this scope
+   --> src/main.rs:181:9
+    |
+181 |         play_sound(music).ok(); // 播放背景音乐
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0277]: the trait bound `&mut Game: EventHandler<_>` is not satisfied
+   --> src/main.rs:183:39
+    |
+183 |     ggez::event::run(ctx, event_loop, &mut game)
+    |     ----------------                  ^^^^^^^^^ the trait `EventHandler<_>` is not implemented for `&mut Game`
+    |     |
+    |     required by a bound introduced by this call
+    |
+note: required by a bound in `run`
+   --> /home/chen/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ggez-0.8.1/src/event.rs:288:8
+    |
+286 | pub fn run<S: 'static, E>(mut ctx: Context, event_loop: EventLoop<()>, mut state: S) -> !
+    |        --- required by a bound in this function
+287 | where
+288 |     S: EventHandler<E>,
+    |        ^^^^^^^^^^^^^^^ required by this bound in `run`
+help: consider removing the leading `&`-reference
+    |
+183 -     ggez::event::run(ctx, event_loop, &mut game)
+183 +     ggez::event::run(ctx, event_loop, game)
+    |
+
+warning: unused import: `SoundSource`
+ --> src/main.rs:5:19
+  |
+5 | use ggez::audio::{SoundSource, Source};
+  |                   ^^^^^^^^^^^
+
+warning: function cannot return without recursing
+   --> src/main.rs:165:5
+    |
+165 |     fn draw(&mut self, ctx: &mut Context) -> GameResult<()> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot return without recursing
+166 |         self.draw(ctx)
+    |         -------------- recursive call site
+    |
+    = help: a `loop` may express intention better if this is on purpose
+    = note: `#[warn(unconditional_recursion)]` on by default
+
+Some errors have detailed explanations: E0050, E0277, E0308, E0425, E0599, E0603.
+For more information about an error, try `rustc --explain E0050`.
+warning: `Improving_Input_and_Drawing_Features` (bin "Improving_Input_and_Drawing_Features") generated 10 warnings
+error: could not compile `Improving_Input_and_Drawing_Features` (bin "Improving_Input_and_Drawing_Features") due to 25 previous errors; 10 warnings emitted
